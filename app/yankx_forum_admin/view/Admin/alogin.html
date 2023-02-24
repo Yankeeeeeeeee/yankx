@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="__CSS__/reset.css">
+    <link rel="stylesheet" href="__CSS__/apa.css">
+    <title>论坛后台管理员登录</title>
+</head>
+<body  background="__IMG__/bg.webp">
+
+    <div id="login_form">
+        <strong>论坛后台管理员登录</strong>
+        <!-- <span>还没有账号？点击<a href="{}">注册</a></span> -->
+        <form action="{:url('admin/aDoLogin')}" method="post" id="mylogin">
+            <ul>
+                <li> 用户名&ensp; <input type="text" name="anick" id="mylogin_input"></换一张li>
+                <li> 密 &ensp; 码&ensp; <input type="text" name="apa" id="mylogin_input"></li>
+                <li><input id="login_submit" type="submit" value="登录"> &emsp;<a href="">找回密码</a></li>
+            </ul>
+        </form>
+    </div>
+
+</body>
+</html>

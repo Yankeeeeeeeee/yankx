@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="__CSS__/reset.css">
+    <link rel="stylesheet" href="__CSS__/mesdeal.css">
+    <link rel="stylesheet" href="__CSS__/secInfo.css">
+    <title>修改用户权限</title>
+</head>
+<body>
+
+<div id="center">
+    <!-- 顶部菜单栏 -->
+    <div id="nav-left">
+        <img src="__IMG__/logo.png" alt="">
+        <!-- 助手函数 -->
+        <!-- {if session('aNick')==null} -->
+        {if !session('?aNick')}
+        <a class="" href="{:url('admin/alogin')}">登录</a>
+        {else /}
+        <span>欢迎您：{:session('aNick')}</span>&emsp;
+        {/if}
+    </div>
+    <div id="top-nav">
+        <ul class="nav-button">
+            <li><a href="{:url('Deal/mesDeal')}">帖子管理</a></li>
+            <li><a href="{:url('index/view')}">用户管理</a></li>
+            <li><a href="{:url('Deal/secDeal')}">板块管理</a></li>
+            <li><a href="{:url('user/doChange')}">回收站管理</a></li>
+            <li><a href="{:url('user/me')}">广告管理</a></li>
+            <li><a href="{:url('index/contact')}">轮播图管理</a></li>
+            <li><a href="{:url('admin/apa')}">修改密码</a></li>
+            <li><a href="{:url('admin/alogout')}">注销</a></li>
+            <li><a href="{:url('admin/alogout')}">论坛前台</a></li>
+        </ul>   
+    </div>
+
+    <!-- 修改板块名称+备注 -->
+    <form action="{:url('Deal/userPowerModi',['unick'=>$Request.param.unick])}" id="sec_form" method="post">
+        <!-- 用户名 -->
+        <div id="sec_name" style="height: 50px;">
+            <span>用户名</span>
+            <div>
+                <span>{$user.unick}</span>
+            </div>
+        </div>
+        
+        <!-- 权限 -->
+        <div id="sec_quan" style="height: 150px;">
+            <span>权限</span>
+            <ul>
+                <!-- <li>{$user.upower}</li> -->
+                {if $user.upower =='正常登录，正常发言'}
+                <li><input type="radio" name="upower" value="正常登录，正常发言" checked> &ensp;正常登录，正常发言</li>
+                <li style="color: rgb(201, 151, 13);"><input type="radio" name="upower"  value="正常登录，不能发言"> &ensp;正常登录，不能发言</li>
+                <li style="color: red;"><input type="radio" name="upower"  value="不能登录，不能发言"> &ensp;不能登录，不能发言</li>
+                {elseif $user.upower=='正常登录，不能发言'}
+                <li><input type="radio" name="upower"  value="正常登录，正常发言"> &ensp;正常登录，正常发言</li>
+                <li style="color: rgb(201, 151, 13);"><input type="radio" name="upower" value="正常登录，不能发言" checked> &ensp;正常登录，不能发言</li>
+                <li style="color: red;"><input type="radio" name="upower"  value="不能登录，不能发言"> &ensp;不能登录，不能发言</li>
+                {else /}
+                <li><input type="radio" name="upower"  value="正常登录，正常发言"> &ensp;正常登录，正常发言</li>
+                <li style="color: rgb(201, 151, 13);"><input type="radio" name="upower"  value="正常登录，不能发言"> &ensp;正常登录，不能发言</li>
+                <li style="color: red;"><input type="radio" name="upower" value="不能登录，不能发言" checked> &ensp;不能登录，不能发言</li>
+                {/if}
+            </ul>
+            
+        </div>
+        <!-- 提交按钮 -->
+        <div id="sec_submit">
+            <input type="submit" value="确定修改">
+        </div>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="__CSS__/reset.css">
+    <link rel="stylesheet" href="__CSS__/reg.css">
+    <link rel="stylesheet" href="__CSS__/login.css">
+    <title>用户注册 | LearnKu 终身编程者的知识社区</title>
+</head>
+<body>
+    <div id="center">
+        <!-- 顶部导航栏 -->
+        <div id="top-nav">
+            <div id="nav-left">
+                <img src="__IMG__/logo.png" alt="">
+                <span>LearnKu</span>
+            </div>
+            <ul class="nav-button">
+                <li><a href="{:url('index/index')}">首页</a></li>
+                <li><a href="{:url('index/view')}">讨论</a></li>
+                <li><a href="{:url('index/post')}">动态</a></li>
+                <li><a href="">修改密码</a></li>
+                <li><a href="">上传头像</a></li>
+                <li><a href="{:url('index/contact')}">联系我们</a></li>
+            </ul>
+            <div class="SearchInput">
+                <input type="text" value="" placeholder="整站搜索">
+                <image src="__IMG__/search.png" mode=""></image>
+            </div>
+            <ul id="top-nav-right">
+                {if (session('uNick')!=null)}
+                <li>欢迎您：{:session('uNick')}</li>&emsp;
+                <img src="__UP__/{:cookie('uImg')}" alt="" width="25px" height="25px">&emsp;
+                {/if}
+                <li><a class="" href="{:url('user/login')}">登录</a>|</li>
+                <li><a class="" href="{:url('user/reg')}">注册</a>|</li>
+                <li><a href="{:url('user/logout')}">退出</a></li>
+            </ul>    
+        </div>
+    <!-- 注册表单 -->
+    <div id="reg">
+        <div class="name">
+            <div class="username">
+                <strong>创建新账号</strong>
+                <span>已有账号？点击<a href="{:url('login')}">登录</a></span>
+                <form action="{:url('user/doReg')}" method="post">
+                    <ul class="user">
+                        <li>用&ensp;户&ensp;名&ensp;<input type="text" name="unick"></li>
+                        <li>密&ensp;&ensp;&ensp;&ensp;码&ensp;<input type="text" name="upa"></li>
+                        <li>确认密码&ensp;<input type="text"></li>
+                        <li>邮&ensp;&ensp;&ensp;&ensp;箱&ensp;<input type="text" name="uemail"></li>
+                        <li>电&ensp;&ensp;&ensp;&ensp;话&ensp;<input type="text" name="utel"></li>
+                        <div class="bt">
+                            <button type="submit" autocomplete="off">注册</button>
+                        </div>
+                    </ul>
+                </form>
+            </div>
+            
+        </div>    
+    </div>
+    <!-- 版权 -->
+    <div class="bottom">
+        <div class="Sponsor">
+            <b><span style="color: #e27575;font-size: 20px;">❤</span>
+                <a href="" > 社区赞助商</a></b>
+            <div class="Sponsor1">
+                <a href=""><img style="height: 50px;width: 170px;" 
+                    src="__IMG__/又拍云.png" alt=""></a>
+                <a href=""><img style="height: 45px;width: 150px;" 
+                    src="__IMG__/日本招聘.jpg" alt=""></a>
+            </div>
+            <u><a href="">成为赞助商</a></u>
+        </div>
+        <div class="bottom-mid">
+            <ul>
+                <li><img style="width: 35px; height: 35px; background-color: #fff;" 
+                    src="__IMG__/logo.png"> &ensp;关于 LearnKu</li>
+                <li>LearnKu 是终身编程者的修道场</li>
+                <li>做最专业、严肃的技术论坛</li>
+                <li><a href="" style="color: #fff; text-decoration: underline;"> 
+                    LearnKu诞生的故事</a></li>
+            </ul>
+            <ul>
+                <li>资源推荐</li>
+                <li><a href="">《社区使用指南》</a></li>
+                <li><a href="">《文档撰写指南》</a></li>
+                <li><a href="">《LearnKu社区指南》</a></li>
+                <li><a href="">《提问的智慧》</a></li>
+            </ul>
+            <ul>
+                <li>服务提供商</li>
+                <li><img src="__IMG__/ucloud.png" alt=""></li>
+                <li><img src="__IMG__/又拍云赞助商.png" alt=""></li>
+                <li><img src="__IMG__/sendcloud.png" alt=""></li>
+            </ul>
+            <ul>
+                <li>其他信息</li>
+                <li><a href="">成为版主</a></li>
+                <li><a href="">所有测试</a></li>
+                <li><a href="">联系站长（反馈意见）</a></li>
+            </ul>
+        </div>
+    
+        
+    
+        <div class="copyright">
+            <p>
+              <a href="http://beian.miit.gov.cn/" target="_blank">粤ICP备18099781号-6</a>
+              <span>|</span>
+              <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=44030502004330" target="_blank"><img
+                  src="https://cdn.learnku.com/uploads/images/201908/21/1/L4ckM2CVb6.png!/fw/20" width="20"
+                  style="position: relative;top: 4px;"> 粤公网安备 44030502004330号</a>
+              <span>|</span>
+              <a href="https://learnku.com/lk">违法和不良信息举报</a>
+            </p>
+            <p class="writer">
+              由 <a href="" target="_blank" style="color: inherit;">zqy&ykx</a> 
+              设计和编码 
+              <span style="color: #e27575;font-size: 14px;">❤</span>
+            </p>
+          </div>
+        
+    </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="__CSS__/reset.css">
+    <link rel="stylesheet" href="__CSS__/reg.css">
+    <link rel="stylesheet" href="__CSS__/login.css">
+    <link rel="stylesheet" href="__CSS__/view.css">
+    <title>论坛版块</title>
+</head>
+<body>
+<!-- 2003010344 -->
+    <div>
+        <!-- 顶部导航栏 -->
+        <div id="top-nav">
+            <div id="nav-left">
+                <img src="__IMG__/logo.png" alt="">
+                <span>LearnKu</span>
+            </div>
+            <ul class="nav-button">
+                <li><a href="{:url('index/index')}">首页</a></li>
+            <li><a href="{:url('index/view')}">讨论</a></li>
+            <li><a href="">动态</a></li>
+            <li><a href="{:url('index/pa')}">修改密码</a></li>
+            <li><a href="{:url('user/me')}">上传头像</a></li>
+            <li><a href="{:url('index/contact')}">联系我们</a></li>
+            </ul>
+            <div class="SearchInput">
+                <input type="text" value="" placeholder="整站搜索">
+                <image src="__IMG__/search.png" mode=""></image>
+            </div>
+            <div id="top-nav-right">
+                <!-- 助手函数 -->
+                <!-- {if session('uNick')==null} -->
+                {if !session('?uNick')}
+                <a class="" href="{:url('user/login')}">登录</a>|
+                <a class="" href="{:url('user/reg')}">注册</a>
+                {else /}
+                <span>欢迎您：{:session('uNick')}</span>&emsp;
+                <img src="__UP__/{:cookie('uImg')}" alt="" width="25px" height="25px">&emsp;
+                <a class="" href="{:url('user/logOut')}">退出</a>
+                {/if}
+            </div>    
+        </div>
+        <!-- 论坛版块 -->
+        
+        <div id="view_content">
+            <div id="sec_list">
+                <!-- 打印板块信息 -->
+                {volist name='sec' id='secRow'}
+                <a href="{:url('Index/view',['sid'=>$secRow.sid])}">{$secRow.sname}</a>
+                {/volist}
+            </div>
+            <h1>&ensp;论坛版块—{$sName}</h1>
+            <div id="view_mid">  
+            <ul id="view_list">
+                {volist name='mes' id='mesRow'}
+                <li id="information" v-for="(item,i) in search(keywords)" :key="i">
+                    <img src="__UP__/{$mesRow.uimg}" alt="" style="width:35px;height:40px;">
+                    <h3>
+                        <!-- <span>[{$sName}]</span> -->
+                        <a href="{:url('index/detail',['mid'=>$mesRow.mid])}">{$mesRow.mtitle}</a></h3>
+                    <!-- <h2><a href="">{$mesRow.mtitle}</a></h2> -->
+                    <div class="under">
+                        <span class="view_author">{$mesRow.munick}</span>
+                        <span class="view_brow">浏览：72</span>
+                        <span class="view_remark">评论：1</span>
+                        <span class="view_time">{$mesRow.mcreateat}</span>
+                    </div>
+                </li>
+                {/volist}
+
+                <div>{$page |raw}</div>
+
+                <!-- <li id="pagearea">
+                    <form action="" name="pageForm" id="pageForm">
+                        共5条，每页显示<select name="listrows" id="pageNum">
+                            <option value="5" >5</option>
+                            <option value="10" >10</option>
+                            <option value="20" >20</option>
+                            <option value="50" >50</option>
+                        </select>条
+                    </form>
+                </li> -->
+            </ul>
+            <div style="width: 44px;">
+                <!-- 空隙 -->
+            </div>
+            <!-- 有边框 -->
+            {if ! $Request.param.sid==0}
+            <div id="view_right">
+                <ul>
+                    <li><a href="{:url('index/post',['sid'=>$Request.param.sid])}">
+                        <!-- <img src="" width="38px"> -->
+                        发表话题</a></li>
+                </ul>
+            </div>
+            {/if}
+        </div>
+            <div id="clear"></div>
+        </div>
+
+        <!-- 底部区域 -->
+        <div class="bottom">
+            <div class="Sponsor">
+                <b><span style="color: #e27575;font-size: 20px;">❤</span>
+                    <a href="" > 社区赞助商</a></b>
+                <div class="Sponsor1">
+                    <a href=""><img style="height: 50px;width: 170px;" 
+                        src="__IMG__/又拍云.png" alt=""></a>
+                    <a href=""><img style="height: 45px;width: 150px;" 
+                        src="__IMG__/日本招聘.jpg" alt=""></a>
+                </div>
+                <u><a href="">成为赞助商</a></u>
+            </div>
+            <div class="bottom-mid">
+                <ul>
+                    <li><img style="width: 35px; height: 35px; border-radius: 4px; background-color: #fff;" 
+                        src="__IMG__/logo.png"> &ensp;关于 LearnKu</li>
+                    <li>LearnKu 是终身编程者的修道场</li>
+                    <li>做最专业、严肃的技术论坛</li>
+                    <li><a href="" style="color: #fff; text-decoration: underline;"> 
+                        LearnKu诞生的故事</a></li>
+                </ul>
+                <ul>
+                    <li>资源推荐</li>
+                    <li><a href="">《社区使用指南》</a></li>
+                    <li><a href="">《文档撰写指南》</a></li>
+                    <li><a href="">《LearnKu社区指南》</a></li>
+                    <li><a href="">《提问的智慧》</a></li>
+                </ul>
+                <ul>
+                    <li>服务提供商</li>
+                    <li><img src="__IMG__/ucloud.png" alt=""></li>
+                    <li><img src="__IMG__/又拍云赞助商.png" alt=""></li>
+                    <li><img src="__IMG__/sendcloud.png" alt=""></li>
+                </ul>
+                <ul>
+                    <li>其他信息</li>
+                    <li><a href="">成为版主</a></li>
+                    <li><a href="">所有测试</a></li>
+                    <li><a href="">联系站长（反馈意见）</a></li>
+                </ul>
+            </div>
+    
+            <div class="copyright">
+                <p>
+                  <a href="http://beian.miit.gov.cn/" target="_blank">粤ICP备18099781号-6</a>
+                  <span>|</span>
+                  <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=44030502004330" target="_blank"><img
+                      src="https://cdn.learnku.com/uploads/images/201908/21/1/L4ckM2CVb6.png!/fw/20" width="20"
+                      style="position: relative;top: 4px;"> 粤公网安备 44030502004330号</a>
+                  <span>|</span>
+                  <a href="https://learnku.com/lk">违法和不良信息举报</a>
+                </p>
+                <p class="writer">
+                  由 <a href="" target="_blank" style="color: inherit;">zqy&ykx</a> 
+                  设计和编码 
+                  <span style="color: #e27575;font-size: 14px;">❤</span>
+                </p>
+              </div>
+            
+        </div>
+    </div>
+</body>
+</html>

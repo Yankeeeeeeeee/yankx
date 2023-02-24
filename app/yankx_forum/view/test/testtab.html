@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>{$name}</h3>
+    <h3>{$info.uname}{$info.uemail}</h3>
+    <h3>{$user.unick}</h3>
+    <h3>{$Request.get.id}</h3>
+    <h3>{:url('User/logIn')}</h3>
+    <h3>{$name |md5}</h3>
+
+    <h3>{$name |substr=0,4}</h3>
+    <h3>{$time | date='Y年m月d日 H:i'}</h3>
+</body>
+</html>

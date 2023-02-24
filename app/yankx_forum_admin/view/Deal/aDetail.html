@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="__CSS__/reset.css">
+    <link rel="stylesheet" href="__CSS__/mesdeal.css">
+    <link rel="stylesheet" href="__CSS__/adetail.css">
+    <title>帖子详细页</title>
+</head>
+<body>
+<div id="center">
+    <!-- 顶部菜单栏 -->
+    <div id="nav-left">
+        <img src="__IMG__/logo.png" alt="">
+        <!-- 助手函数 -->
+        <!-- {if session('aNick')==null} -->
+        {if !session('?aNick')}
+        <a class="" href="{:url('admin/alogin')}">登录</a>
+        {else /}
+        <span>欢迎您：{:session('aNick')}</span>&emsp;
+        {/if}
+    </div>
+    <div id="top-nav">
+        <ul class="nav-button">
+            <li><a href="{:url('Deal/mesDeal')}">帖子管理</a></li>
+            <li><a href="{:url('index/view')}">用户管理</a></li>
+            <li><a href="">板块管理</a></li>
+            <li><a href="{:url('user/doChange')}">回收站管理</a></li>
+            <li><a href="{:url('user/me')}">广告管理</a></li>
+            <li><a href="{:url('index/contact')}">轮播图管理</a></li>
+            <li><a href="{:url('admin/apa')}">修改密码</a></li>
+            <li><a href="{:url('admin/alogout')}">注销</a></li>
+            <li><a href="{:url('admin/alogout')}">论坛前台</a></li>
+        </ul>   
+    </div>
+
+    <div id="detail_left">
+        <!-- 帖子内容 -->
+        <div id="detail_detail">
+            <span>原贴</span>
+            <p id="detail_title">原贴标题：{$mes.mtitle}</p>
+            <div id="detail_imfo">
+            <span>发布时间：{$mes.mcreateat}</span>&emsp;&emsp;&emsp;
+            <p>作者：{$mes.munick}</p>
+            </div>
+            <div id="detail_detail1">{$mes.mcontent | raw}</div>
+        </div>
+        <!-- 帖子评论区 -->
+        <div id="detail_comment">
+            <span>回复</span>
+            <table>
+                <tr>
+                    <th style="text-align: center;">回复内容</th>
+                    <th style="text-align: center;">发布时间</th>
+                    <th style="text-align: center;">作者</th>
+                    <th style="text-align: center;">操作</th>
+                </tr>
+                {volist name='res' id='resRow'}
+                <tr>
+                    <td>{$resRow.rcontent | raw}</td>
+                    <td>{$resRow.rcreateat}</td>
+                    <td>{$resRow.runick}</td>
+                    <td>
+                        <a href="{:url('Deal/resDel',['rid'=>$resRow.rid])}">直接删除</a> | 
+                        <a href="">回收站</a>
+                    </td>
+                </tr>
+                {/volist}
+            </table>
+        </div>
+</div>
+</body>
+</html>

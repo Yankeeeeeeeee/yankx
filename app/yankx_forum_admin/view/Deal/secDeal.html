@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="__CSS__/reset.css">
+    <link rel="stylesheet" href="__CSS__/mesdeal.css">
+    <title>帖子管理</title>
+</head>
+<body>
+
+<div id="center">
+    <!-- 顶部菜单栏 -->
+    <div id="nav-left">
+        <img src="__IMG__/logo.png" alt="">
+        <!-- 助手函数 -->
+        <!-- {if session('aNick')==null} -->
+        {if !session('?aNick')}
+        <a class="" href="{:url('admin/alogin')}">登录</a>
+        {else /}
+        <span>欢迎您：{:session('aNick')}</span>&emsp;
+        {/if}
+    </div>
+    <div id="top-nav">
+        <ul class="nav-button">
+            <li><a href="{:url('Deal/mesDeal')}">帖子管理</a></li>
+            <li><a href="{:url('Deal/userDeal')}">用户管理</a></li>
+            <li><a href="{:url('Deal/secDeal')}">板块管理</a></li>
+            <li><a href="{:url('user/doChange')}">回收站管理</a></li>
+            <li><a href="{:url('user/me')}">广告管理</a></li>
+            <li><a href="{:url('index/contact')}">轮播图管理</a></li>
+            <li><a href="{:url('admin/apa')}">修改密码</a></li>
+            <li><a href="{:url('admin/alogout')}">注销</a></li>
+            <li><a href="{:url('admin/alogout')}">论坛前台</a></li>
+        </ul>   
+    </div>
+
+    <!-- 板块管理+搜索框 -->
+    <div id="mid_list">
+        <div>
+            <span>板块管理</span> &emsp;
+            <a href="{:url('deal/secAdd')}"><button>添加新板块</button></a>
+            <!-- <input type="button" value="添加板块"></input> -->
+        </div>
+        
+        <form id="SearchInput" action="{:url('deal/secdeal')}" method="post">
+            <input id="search_input" type="text" name="search_input">
+            <input id="search_submit" type="submit" value="搜索">
+        </form>
+    </div>
+
+    <!-- 帖子内容 -->
+    <div id="post_content">
+        <table>
+            <!-- tr表示表格的一行，th表示标题，td表示内容 -->
+            <tr>
+                <th style="text-align: center;">sid</th>
+                <th style="text-align: center;">板块名称</th>
+                <th style="text-align: center;">备注</th>
+                <th style="text-align: center;">操作</th>
+            </tr>
+            {volist name='sec' id='secRow'}
+            <tr>
+                <td>{$secRow.sid}</td>
+                <td>{$secRow.sname}</td>
+                <td>{$secRow.sremark}</td>
+                <td>
+                    <a href="{:url('deal/secInfo',['sid'=>$secRow.sid])}">修改</a>&emsp;| &emsp;
+                    <a href="{:url('deal/secDel',['sid'=>$secRow.sid])}">直接删除</a>&emsp;| &emsp;
+                    <a href="">回收站</a>
+                </td>
+            </tr>
+            {/volist}
+        </table>
+        <div>{$page |raw}</div>
+        
+    </div>
+
+</div>
+
+    
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="__CSS__/reset.css">
+    <link rel="stylesheet" href="__CSS__/apa.css">
+
+    <title>论坛后台管理员修改密码</title>
+</head>
+<body background="__IMG__/bg.webp">
+
+    <div id="login_form">
+        <strong>论坛后台管理员修改密码</strong>
+        
+        <form action="{:url('Admin/aDoPa')}" method="post" id="mylogin">
+            <ul>
+                <li><input type="text" disabled placeholder="管理员：{:session('aNick')}" name="anick" id="mylogin_input"></换一张li>
+                <li><input type="text" placeholder=" 请输入旧密码" name="opa" id="mylogin_input"></li>
+                <li> <input type="text" placeholder=" 请输入新密码" name="npa" id="mylogin_input"></li>
+                <li> <input type="text" placeholder=" 请再次输入新密码" name="npa1" id="mylogin_input"></li>
+                <li><input id="login_submit" type="submit" value="提交"></li>
+            </ul>
+        </form>
+    </div>
+</body>
+</html>
